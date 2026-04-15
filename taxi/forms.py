@@ -7,7 +7,7 @@ from .models import Car
 from django import forms
 
 
-class DriverLicenseUpdateForm(UserCreationForm):
+class DriverLicenseUpdateForm(forms.ModelForm):
 
     class Meta:
         model = get_user_model()
@@ -23,7 +23,7 @@ class DriverLicenseUpdateForm(UserCreationForm):
         return license_number
 
 
-class CarCreate(forms.ModelForm):
+class CarCreate(UserCreationForm):
     drivers = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
